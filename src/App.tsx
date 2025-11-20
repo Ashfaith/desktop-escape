@@ -34,6 +34,8 @@ const DesktopPC = () => {
       icon: Folder,
       color: "text-blue-400",
       password: false,
+      width: 1200,
+      heiht: 800,
     },
     {
       id: 3,
@@ -51,8 +53,8 @@ const DesktopPC = () => {
       icon: icon.icon,
       x: Math.random() * 200 + 100,
       y: Math.random() * 100 + 50,
-      width: 600,
-      height: 400,
+      width: icon.width || 600,
+      height: icon.heiht || 400,
       minimized: false,
       password: icon.password,
     };

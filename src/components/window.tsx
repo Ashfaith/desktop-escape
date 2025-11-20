@@ -1,12 +1,9 @@
-import { useState } from "react";
 import { X } from "lucide-react";
 import Password from "./password";
+import Video from "./Video";
 
 const Window = ({ window, closeWindow }) => {
   const Icon = window.icon;
-
-  const [isPasswordCorrect, setIsPasswordCorrect] = useState<boolean>(false);
-  const [isIncorrect, setIsIncorrect] = useState<boolean>(false);
 
   if (window.minimized) return null;
 
@@ -39,27 +36,15 @@ const Window = ({ window, closeWindow }) => {
 
       {/* Window body */}
       <div className="flex-1 flex items-center justify-center p-6 bg-white">
-        {window.password && !isPasswordCorrect ? (
+        {window.password && (
           <div className="flex flex-col items-center">
-            <Password
-              setIsPasswordCorrect={setIsPasswordCorrect}
-              setIsIncorrect={setIsIncorrect}
-            />
-            <div className="mt-4 h-8">
-              {isIncorrect && (
-                <p className="text-red-600 text-l">
-                  Incorrect password. Try again.
-                </p>
-              )}
-            </div>
+            <Password />
           </div>
-        ) : (
-          <>
-            <h2 className="text-2xl font-bold mb-4">{window.title}</h2>
-            <p className="text-red-600 text-4xl font-bold">
-              MAP CONTENT GOES HERE!!!
-            </p>
-          </>
+        )}
+        {window.title === "Play Me" && (
+          <div className="flex flex-col items-center">
+            <Video />
+          </div>
         )}
       </div>
     </div>

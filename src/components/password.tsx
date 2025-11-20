@@ -1,16 +1,11 @@
 import { useState } from "react";
 
-interface PasswordProps {
-  setIsPasswordCorrect: (value: boolean) => void;
-  setIsIncorrect: (value: boolean) => void;
-}
-
-const Password = ({ setIsPasswordCorrect, setIsIncorrect }: PasswordProps) => {
-  const pos = { x: 200, y: 150 };
-
+const Password = () => {
   const password = "secret";
 
   const [inputValue, setInputValue] = useState("");
+  const [isPasswordCorrect, setIsPasswordCorrect] = useState<boolean>(false);
+  const [isIncorrect, setIsIncorrect] = useState<boolean>(false);
 
   const checkPassword = (e: Event) => {
     e.preventDefault();
@@ -22,25 +17,36 @@ const Password = ({ setIsPasswordCorrect, setIsIncorrect }: PasswordProps) => {
     }
   };
 
-  return (
-    <div className="flex flex-col items-center justify-center h-full">
-      <div className="text-black text-xl font-bold mb-6">PASSWORD REQUIRED</div>
-      <form onSubmit={checkPassword}>
-        <input
-          type="password"
-          id="enteredPassword"
-          className="border bg-blue-500 p-2 m-2"
-          onChange={(e) => setInputValue(e.target.value)}
-          required
-        />
-        <button
-          type="submit"
-          className="bg-blue-500 text-white p-2 m-2 rounded"
-        >
-          Unlock
-        </button>
-      </form>
-    </div>
+  return !isPasswordCorrect ? (
+    <>
+      <div className="flex flex-col items-center justify-center h-full">
+        <div className="text-black text-xl font-bold mb-6">
+          PASSWORD REQUIRED
+        </div>
+        <form onSubmit={checkPassword}>
+          <input
+            type="password"
+            id="enteredPassword"
+            className="border bg-blue-500 p-2 m-2"
+            onChange={(e) => setInputValue(e.target.value)}
+            required
+          />
+          <button
+            type="submit"
+            className="bg-blue-500 text-white p-2 m-2 rounded"
+          >
+            Unlock
+          </button>
+        </form>
+      </div>
+      <div className="mt-4 h-8">
+        {isIncorrect && (
+          <p className="text-red-600 text-l">Incorrect password. Try again.</p>
+        )}
+      </div>
+    </>
+  ) : (
+    <div className="text-black text-2xl font-bold">MAP CONTENT GOES HERE</div>
   );
 };
 
