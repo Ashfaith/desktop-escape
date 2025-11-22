@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Folder } from "lucide-react";
-import Window from "./components/window";
+import File from "./components/File";
 
 const DesktopPC = () => {
-  const [windows, setWindows] = useState([]);
+  const [file, setFile] = useState([]);
   const [time, setTime] = useState(
     new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
   );
@@ -35,7 +35,7 @@ const DesktopPC = () => {
       color: "text-blue-400",
       password: false,
       width: 1200,
-      heiht: 800,
+      height: 800,
     },
     {
       id: 3,
@@ -46,29 +46,29 @@ const DesktopPC = () => {
     },
   ];
 
-  const openWindow = (icon) => {
-    const newWindow = {
+  const openFile = (icon) => {
+    const width = icon.width ?? 600;
+    const height = icon.height ?? 400;
+
+    const x = window.innerWidth / 2 - width / 2;
+    const y = window.innerHeight / 2 - height / 2;
+
+    const newFile = {
       id: Date.now(),
       title: icon.name,
       icon: icon.icon,
-      x: Math.random() * 200 + 100,
-      y: Math.random() * 100 + 50,
-      width: icon.width || 600,
-      height: icon.heiht || 400,
+      x,
+      y,
+      width,
+      height,
       minimized: false,
       password: icon.password,
     };
-    setWindows([...windows, newWindow]);
+    setFile([...file, newFile]);
   };
 
-  const closeWindow = (id) => {
-    setWindows(windows.filter((w) => w.id !== id));
-  };
-
-  const restoreWindow = (id) => {
-    setWindows(
-      windows.map((w) => (w.id === id ? { ...w, minimized: false } : w))
-    );
+  const closeFile = (id) => {
+    setFile(file.filter((w) => w.id !== id));
   };
 
   return (
@@ -80,7 +80,7 @@ const DesktopPC = () => {
           return (
             <button
               key={icon.id}
-              onDoubleClick={() => openWindow(icon)}
+              onDoubleClick={() => openFile(icon)}
               className="flex flex-col items-center gap-2 p-3 rounded hover:bg-white/20 transition-colors group"
             >
               <Icon size={48} className={`${icon.color} drop-shadow-lg`} />
@@ -92,9 +92,9 @@ const DesktopPC = () => {
         })}
       </div>
 
-      {/* Windows */}
-      {windows.map((window) => (
-        <Window key={window.id} window={window} closeWindow={closeWindow} />
+      {/* Files */}
+      {file.map((file) => (
+        <File key={file.id} file={file} closeFile={closeFile} />
       ))}
 
       {/* Taskbar */}
@@ -102,24 +102,6 @@ const DesktopPC = () => {
         <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded font-semibold">
           Start
         </button>
-
-        <div className="flex gap-2">
-          {windows
-            .filter((w) => w.minimized)
-            .map((window) => {
-              const Icon = window.icon;
-              return (
-                <button
-                  key={window.id}
-                  onClick={() => restoreWindow(window.id)}
-                  className="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded flex items-center gap-2"
-                >
-                  <Icon size={16} />
-                  <span className="text-sm">{window.title}</span>
-                </button>
-              );
-            })}
-        </div>
 
         <div className="text-white text-sm font-medium">{time}</div>
       </div>
