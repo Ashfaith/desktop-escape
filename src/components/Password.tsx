@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Password = () => {
-  const password = "secret";
+  const password = "EyesOnly-042!";
 
   const [inputValue, setInputValue] = useState("");
   const [isPasswordCorrect, setIsPasswordCorrect] = useState<boolean>(false);
@@ -41,7 +41,7 @@ const Password = () => {
       </div>
       <div className="mt-4 h-8">
         {isIncorrect && (
-          <p className="text-red-600 text-l">Incorrect password. Try again.</p>
+          <p className="text-red-600 text-l">INCORRECT PASSWORD! TRY AGAIN!</p>
         )}
       </div>
     </>

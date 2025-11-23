@@ -22,27 +22,34 @@ const DesktopPC = () => {
 
   const desktopIcons = [
     {
-      id: 1,
+      id: 0,
       name: "Cats Galore",
       icon: Folder,
       color: "text-yellow-400",
       password: false,
     },
     {
-      id: 2,
-      name: "Play Me",
+      id: 1,
+      name: "Gadgets",
       icon: Folder,
-      color: "text-blue-400",
+      color: "text-red-400",
       password: false,
-      width: 1200,
-      height: 800,
     },
     {
-      id: 3,
+      id: 2,
       name: "Map",
       icon: Folder,
       color: "text-green-400",
       password: true,
+    },
+    {
+      id: 3,
+      name: "Play Me",
+      icon: Folder,
+      color: "text-white",
+      password: false,
+      width: 1200,
+      height: 800,
     },
   ];
 
@@ -74,14 +81,16 @@ const DesktopPC = () => {
   return (
     <div className="h-screen w-screen bg-gradient-to-br from-blue-400 via-blue-500 to-purple-600 overflow-hidden relative">
       {/* Desktop Icons */}
-      <div className="p-8 grid grid-cols-1 gap-6 w-32">
+      <div className="flex flex-col items-start h-screen w-screen">
         {desktopIcons.map((icon) => {
           const Icon = icon.icon;
           return (
             <button
               key={icon.id}
               onDoubleClick={() => openFile(icon)}
-              className="flex flex-col items-center gap-2 p-3 rounded hover:bg-white/20 transition-colors group"
+              className={`flex flex-col items-center gap-2 p-3 w-24 rounded hover:bg-white/20 transition-colors group ${
+                icon.id === desktopIcons.length - 1 ? "mx-auto my-50" : ""
+              }`}
             >
               <Icon size={48} className={`${icon.color} drop-shadow-lg`} />
               <span className="text-white text-sm font-medium text-center drop-shadow-md">

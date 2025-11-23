@@ -32,7 +32,7 @@ const Cats = () => {
       return { x, y, index };
     });
 
-    const delayPerCat = 300; // .3 seconds between each cat appearing
+    const delayPerCat = 150; // .15 seconds between each cat appearing
     const timers: number[] = newPos.map((pos, i) =>
       setTimeout(() => {
         setTimedCats((prev) => [...prev, pos]);
