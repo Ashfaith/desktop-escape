@@ -1,4 +1,3 @@
-// App.tsx
 import { useEffect, useState } from "react";
 import { Folder } from "lucide-react";
 import File from "./components/File";

@@ -10,6 +10,26 @@ const File = ({ file, closeFile }) => {
   const Icon = file.icon;
   const [isUnlocked, setIsUnlocked] = useState(false);
 
+  const isMap = file.title === "Map" && isUnlocked;
+
+  const position = isMap
+    ? {
+      left: window.innerWidth / 2 - 600,
+      top: window.innerHeight / 2 - 450,
+      zIndex: 1000,
+    }
+    : file.password
+    ? {
+      left: window.innerWidth / 2 - 200,
+      top: window.innerHeight / 2 - 150,
+      zIndex: 1000,
+    }
+    : {
+      left: file.x,
+      top: file.y,
+      zIndex: 1000
+    }
+
   const renderContent = () => {
     if (file.title === "Cats Galore") {
       return <Cats />;
@@ -42,19 +62,7 @@ const File = ({ file, closeFile }) => {
   return (
     <div
       className="absolute bg-white rounded-lg shadow-2xl overflow-hidden border border-gray-300"
-      style={
-        file.password
-          ? {
-              left: window.innerWidth / 2 - 200,
-              top: window.innerHeight / 2 - 150,
-              zIndex: 1000,
-            }
-          : {
-              left: file.x,
-              top: file.y,
-              zIndex: 1000,
-            }
-      }
+      style={position}
     >
       {/* Top bar */}
       <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 flex items-center justify-between select-none">
