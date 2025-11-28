@@ -1,3 +1,4 @@
+// App.tsx
 import { useEffect, useState } from "react";
 import { Folder } from "lucide-react";
 import File from "./components/File";
@@ -34,6 +35,8 @@ const DesktopPC = () => {
       icon: Folder,
       color: "text-red-400",
       password: false,
+      width: 800,
+      height: 1200,
     },
     {
       id: 2,
@@ -41,12 +44,14 @@ const DesktopPC = () => {
       icon: Folder,
       color: "text-green-400",
       password: true,
+      width: -600,
+      height: -300,
     },
     {
       id: 3,
       name: "Play Me",
       icon: Folder,
-      color: "text-white",
+      color: "text-yellow-400",
       password: false,
       width: 1200,
       height: 800,
@@ -54,11 +59,8 @@ const DesktopPC = () => {
   ];
 
   const openFile = (icon) => {
-    const width = icon.width ?? 600;
-    const height = icon.height ?? 400;
-
-    const x = window.innerWidth / 2 - width / 2;
-    const y = window.innerHeight / 2 - height / 2;
+    const x = window.innerWidth / 2 - icon.width / 2;
+    const y = window.innerHeight / 2 - icon.height / 2;
 
     const newFile = {
       id: Date.now(),
@@ -66,8 +68,6 @@ const DesktopPC = () => {
       icon: icon.icon,
       x,
       y,
-      width,
-      height,
       minimized: false,
       password: icon.password,
     };
@@ -79,7 +79,7 @@ const DesktopPC = () => {
   };
 
   return (
-    <div className="h-screen w-screen bg-gradient-to-br from-blue-400 via-blue-500 to-purple-600 overflow-hidden relative">
+    <div className="h-screen w-screen bg-[url(/CESA_wallpaper_final.png)] bg-cover bg-no-repeat bg-center from-blue-400 via-blue-500 to-purple-600 overflow-hidden relative">
       {/* Desktop Icons */}
       <div className="flex flex-col items-start h-screen w-screen">
         {desktopIcons.map((icon) => {
@@ -89,11 +89,23 @@ const DesktopPC = () => {
               key={icon.id}
               onDoubleClick={() => openFile(icon)}
               className={`flex flex-col items-center gap-2 p-3 w-24 rounded hover:bg-white/20 transition-colors group ${
-                icon.id === desktopIcons.length - 1 ? "mx-auto my-50" : ""
+                icon.id === desktopIcons.length - 1
+                  ? "mx-auto my-50 text-lg"
+                  : ""
               }`}
             >
-              <Icon size={48} className={`${icon.color} drop-shadow-lg`} />
-              <span className="text-white text-sm font-medium text-center drop-shadow-md">
+              <Icon
+                size={48}
+                fill={icon.id === desktopIcons.length - 1 ? "#fcc800" : "none"}
+                className={`${icon.color} drop-shadow-lg`}
+              />
+              <span
+                className={`text-white text-center drop-shadow-md ${
+                  icon.id === desktopIcons.length - 1
+                    ? "text-lg font-bold"
+                    : "text-sm font-medium"
+                }`}
+              >
                 {icon.name}
               </span>
             </button>

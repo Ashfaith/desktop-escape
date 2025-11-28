@@ -11,9 +11,9 @@ const Video = ({ file, closeFile }) => {
   }, [file.id, closeFile]);
 
   return (
-    <div className="flex flex-col items-center justify-center h-full">
-      <video autoPlay>
-        <source src={video} typeof="/video/mp4" />
+    <div className="flex flex-col items-center justify-center">
+      <video autoPlay className="max-w-full max-h-full">
+        <source src={video} type="video/mp4" />
       </video>
     </div>
   );

@@ -1,23 +1,27 @@
-// CatsGalore.tsx
 import { useEffect, useState } from "react";
 
-const catHeads = [
-  "cat-head0.png",
-  "cat-head1.png",
-  "cat-head2.png",
-  "cat-head3.png",
-  "cat-head4.png",
-  "cat-head5.png",
-  "cat-head6.png",
-  "cat-head7.png",
-  "cat-head8.png",
-  "cat-head9.png",
-  "cat-head10.png",
-  "cat-head11.png",
-  "cat-head12.png",
-  "cat-head13.png",
-  "cat-head14.png",
-  "cat-head15.png",
+const catImgs = [
+  "cat0.png",
+  "cat1.png",
+  "cat2.png",
+  "cat3.png",
+  "cat4.png",
+  "cat5.png",
+  "cat6.png",
+  "cat7.png",
+  "cat8.png",
+  "cat9.png",
+  "cat10.png",
+  "cat11.png",
+  "cat12.png",
+  "cat13.png",
+  "cat14.png",
+  "cat15.png",
+  "cat16.png",
+  "cat17.png",
+  "cat18.png",
+  "cat19.png",
+  "cat20.png",
 ];
 
 const Cats = () => {
@@ -26,13 +30,13 @@ const Cats = () => {
   useEffect(() => {
     setTimedCats([]);
 
-    const newPos = catHeads.map((_, index) => {
-      const x = Math.random() * window.innerWidth;
-      const y = Math.random() * window.innerHeight;
+    const newPos = catImgs.map((_, index) => {
+      const x = Math.random() * window.innerWidth - 100;
+      const y = Math.random() * window.innerHeight - 100;
       return { x, y, index };
     });
 
-    const delayPerCat = 150; // .15 seconds between each cat appearing
+    const delayPerCat = 250;
     const timers: number[] = newPos.map((pos, i) =>
       setTimeout(() => {
         setTimedCats((prev) => [...prev, pos]);
@@ -64,7 +68,7 @@ const Cats = () => {
           }}
         >
           <img
-            src={`/cats/${catHeads[index]}`}
+            src={`/cats/${catImgs[index]}`}
             className="size-52"
             alt={`Cat ${index}`}
           />
