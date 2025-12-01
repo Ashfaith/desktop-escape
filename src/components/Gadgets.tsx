@@ -1,7 +1,8 @@
-const Gadgets = () => {
+const Gadgets = ({ width, height, left, top }) => {
   return (
     <img
-      className="w-[900px] h-[1200px] flex flex-col items-center justify-center"
+      className="flex flex-col items-center justify-center"
+      style={{ width, height, left, top }}
       src="/gadget_pdf.png"
     />
   );

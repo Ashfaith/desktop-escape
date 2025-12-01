@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { Folder } from "lucide-react";
 import File from "./components/File";
+import Start from "./components/Start";
 
 const DesktopPC = () => {
   const [file, setFile] = useState([]);
   const [time, setTime] = useState(
     new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
   );
+  const [startOpen, setStartOpen] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -19,6 +21,10 @@ const DesktopPC = () => {
     }, 1000);
     return () => clearInterval(timer);
   }, []);
+
+  const startButtonCLick = () => {
+    setStartOpen(!startOpen)
+  }
 
   const desktopIcons = [
     {
@@ -34,8 +40,6 @@ const DesktopPC = () => {
       icon: Folder,
       color: "text-red-400",
       password: false,
-      width: 800,
-      height: 1200,
     },
     {
       id: 2,
@@ -43,8 +47,6 @@ const DesktopPC = () => {
       icon: Folder,
       color: "text-green-400",
       password: true,
-      width: -600,
-      height: -300,
     },
     {
       id: 3,
@@ -52,8 +54,6 @@ const DesktopPC = () => {
       icon: Folder,
       color: "text-yellow-400",
       password: false,
-      width: 1200,
-      height: 800,
     },
   ];
 
@@ -116,15 +116,6 @@ const DesktopPC = () => {
       {file.map((file) => (
         <File key={file.id} file={file} closeFile={closeFile} />
       ))}
-
-      {/* Taskbar */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gray-800/95 backdrop-blur-sm h-12 flex items-center justify-between px-4 shadow-lg">
-        <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded font-semibold">
-          Start
-        </button>
-
-        <div className="text-white text-sm font-medium">{time}</div>
-      </div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import video from "/media/ash/Harder Drive/Code/repos/media/hellYeah.mp4";
 import { useEffect } from "react";
 
-const Video = ({ file, closeFile }) => {
+const Video = ({ file, closeFile, width, height }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       closeFile(file.id);
@@ -11,7 +11,7 @@ const Video = ({ file, closeFile }) => {
   }, [file.id, closeFile]);
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center" style={{ width, height }}>
       <video autoPlay className="max-w-full max-h-full">
         <source src={video} type="video/mp4" />
       </video>
