@@ -69,7 +69,7 @@ const Cats = () => {
         >
           <img
             src={`/cats/${catImgs[index]}`}
-            className="size-52"
+            className="size-88"
             alt={`Cat ${index}`}
           />
         </div>

@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { Folder } from "lucide-react";
 import File from "./components/File";
-import Start from "./components/Start";
 
 const DesktopPC = () => {
   const [file, setFile] = useState([]);
   const [time, setTime] = useState(
     new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
   );
-  const [startOpen, setStartOpen] = useState(false)
+  const [startOpen, setStartOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -23,8 +22,8 @@ const DesktopPC = () => {
   }, []);
 
   const startButtonCLick = () => {
-    setStartOpen(!startOpen)
-  }
+    setStartOpen(!startOpen);
+  };
 
   const desktopIcons = [
     {
@@ -87,11 +86,7 @@ const DesktopPC = () => {
             <button
               key={icon.id}
               onDoubleClick={() => openFile(icon)}
-              className={`flex flex-col items-center gap-2 p-3 w-24 rounded hover:bg-white/20 transition-colors group ${
-                icon.id === desktopIcons.length - 1
-                  ? "mx-auto my-50 text-lg"
-                  : ""
-              }`}
+              className={`flex flex-col items-center gap-2 p-3 w-24 rounded hover:bg-white/20 transition-colors group`}
             >
               <Icon
                 size={48}
