@@ -1,29 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Folder } from "lucide-react";
 import File from "./components/File";
 
 const DesktopPC = () => {
   const [file, setFile] = useState([]);
-  const [time, setTime] = useState(
-    new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
-  );
-  const [startOpen, setStartOpen] = useState(false);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(
-        new Date().toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-        })
-      );
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const startButtonCLick = () => {
-    setStartOpen(!startOpen);
-  };
 
   const desktopIcons = [
     {

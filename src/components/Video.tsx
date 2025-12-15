@@ -1,4 +1,4 @@
-import video from "/media/ash/Harder Drive/Code/repos/media/hellYeah.mp4";
+// import video from "video insert goes here";
 import { useEffect } from "react";
 
 const Video = ({ file, closeFile, width, height }) => {
@@ -11,10 +11,14 @@ const Video = ({ file, closeFile, width, height }) => {
   }, [file.id, closeFile]);
 
   return (
-    <div className="flex flex-col items-center justify-center" style={{ width, height }}>
-      <video autoPlay className="max-w-full max-h-full">
+    <div
+      className="flex flex-col items-center justify-center"
+      style={{ width, height }}
+    >
+      {/* <video autoPlay className="max-w-full max-h-full">
         <source src={video} type="video/mp4" />
-      </video>
+      </video> */}
+      <p>This plays a video in production</p>
     </div>
   );
 };
